@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спойлер</title>
+    <style>
+        .block-spoiler__spoiler:not(.active) {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="block-spoiler">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p class="block-spoiler__spoiler spoiler-1">Eligendi dolore reiciendis ut veritatis saepe mollitia minus,
+            repellendus alias aliquam sit expedita, illo eius iusto! Sequi magni quisquam aliquam laborum cumque?</p>
+        <a href="" class="block-spoiler__toggle" data-name="spoiler-1">Подробнее</a>
+    </div>
+
+    <div class="block-spoiler">
+        <p>Eligendi dolore reiciendis ut veritatis saepe mollitia minus</p>
+        <p class="block-spoiler__spoiler spoiler-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+            dolore reiciendis ut veritatis saepe mollitia minus,
+            repellendus alias aliquam sit expedita, illo eius iusto! Sequi magni quisquam aliquam laborum cumque?</p>
+        <a href="" class="block-spoiler__toggle" data-name="spoiler-2">Подробнее</a>
+    </div>
+
+    <script>
+
+        // Массив всех ссылок
+        const links = document.querySelectorAll('.block-spoiler__toggle')
+
+        // Массив всех скрытых блоков
+        const blockText = document.querySelectorAll('.block-spoiler__spoiler')
+
+        let tag = ''
+
+        const openSpoiler = function () {
+            links.forEach(link => {
+                link.addEventListener('click', clickLink)
+            })
+
+            function clickLink(event) {
+                event.preventDefault()
+
+                tag = this.getAttribute('data-name')
+
+                if (this.textContent !='Скрыть') {
+                    openText(tag)
+                    this.textContent ='Скрыть'
+                } else {
+                    closeText(tag)
+                    this.textContent ='Подробнее'
+                }
+
+            }
+
+            function openText(tag) {
+                blockText.forEach(block => {
+
+                    if (block.classList.contains(tag)) {
+                        block.classList.add('active')
+
+                    }
+
+                })
+            }
+
+            function closeText(tag) {
+                blockText.forEach(block => {
+
+                    if (block.classList.contains(tag)) {
+                        block.classList.remove('active')
+
+                    }
+
+                })
+            }
+        }
+
+        openSpoiler()
+
+    </script>
+</body>
+
+</html>
