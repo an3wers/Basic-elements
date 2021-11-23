@@ -1,0 +1,84 @@
+#app {
+    padding: 5rem 0;
+    display: flex;
+    justify-content: center;
+    
+}
+.wrap {
+    width: 500px;
+}
+
+.select {width: 100%; position: relative; z-index: 100;}
+
+.select.open .select__dropdown{
+    display: block;
+}
+
+.select.open .select__input {
+    border-bottom: none;
+}
+
+.select.open [data-type="arrow"] {
+    transform: rotateX(180deg);
+
+}
+
+.select__input {
+    border: 1px solid #ccc;
+    height: 46px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.select__dropdown {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    top: 46px;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.select__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.select__item {
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color .25s ease-in;
+}
+
+.select__item:hover {
+    background-color: #f0f0f0;
+    
+}
+
+.select__item.selected {
+    background-color: bisque;
+}
+
+.select__backdrop {
+    position: fixed;
+    display: none;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* background:rgba(0, 0, 0, 0.5); */
+    z-index: -1;
+}
+
+.select.open .select__backdrop {
+    display: block;
+}
